@@ -10,7 +10,7 @@ import (
 
 func main() {
 	appConfig := config.Load()
-	wakeService := service.CreateWakeService(appConfig.MAC)
+	wakeService := service.CreateWakeService(appConfig)
 	wakeController := controller.CreateWakeController(wakeService)
 
 	r := router.NewRouter(wakeController)
