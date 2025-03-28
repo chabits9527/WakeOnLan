@@ -13,7 +13,7 @@ type WakeService struct {
 }
 
 func (s WakeService) WakeOnLAN() {
-	fmt.Sprintf("发送唤醒信号到 %v", s.MAC)
+	fmt.Printf("发送唤醒信号到 %v", s.MAC)
 }
 
 func CreateWakeService(MAC string) *WakeService {
@@ -24,7 +24,7 @@ func CreateWakeService(MAC string) *WakeService {
 	packet := bytes.NewBuffer(nil)
 	packet.Write(bytes.Repeat([]byte{0xFF}, 6))
 	for i := 0; i < 16; i++ {
-		packet.Write(s.MAC)
+		packet.Write(hardwareAddr)
 	}
 	return &WakeService{hardwareAddr, packet.Bytes()}
 }
